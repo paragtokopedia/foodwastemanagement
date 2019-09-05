@@ -1,32 +1,30 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Chart} from 'chart.js';
-import {NavigationExtras,Router} from '@angular/router';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: 'home.page.html',
-    styleUrls: ['home.page.scss'],
+    selector: 'app-detail',
+    templateUrl: './detail.page.html',
+    styleUrls: ['./detail.page.scss'],
 })
-export class HomePage implements OnInit {
-
+export class DetailPage implements OnInit {
     @ViewChild('barCanvas') lineCanvas: ElementRef;
-    private barChart: Chart;
+    data: any;
+    name : string;
 
-    public items: Array<{ name: string; id: number }> = [{name: 'parag', id : 1},{name: 'avani', id : 1},{name: 'naman', id : 1}];
 
-    constructor(private router: Router) {
-    }
-
-    openDetailsWithQueryParams(item) {
-        let navigationExtras: NavigationExtras = {
-            queryParams: {
-                item: JSON.stringify(item),
+    constructor(private route: ActivatedRoute, private router: Router) {
+        this.route.queryParams.subscribe(params => {
+            if (params && params.item) {
+                this.data = JSON.parse(params.item);
             }
-        };
-        this.router.navigate(['detail'], navigationExtras);
+        });
     }
 
     ngOnInit() {
+        console.log(this.data);
+        this.name = this.data.name;
+
         this.lineChart = new Chart(this.lineCanvas.nativeElement, {
             type: "line",
             data: {
