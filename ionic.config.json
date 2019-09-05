@@ -1,5 +1,7 @@
 {
-  "name": "myApp",
-  "integrations": {},
+  "name": "Food Waste Management",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

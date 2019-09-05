@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Chart} from 'chart.js';
-import {NavigationExtras,Router} from '@angular/router';
+import {NavigationExtras, Router} from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -9,8 +9,8 @@ import {NavigationExtras,Router} from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-    @ViewChild('barCanvas') lineCanvas: ElementRef;
-    private barChart: Chart;
+    @ViewChild('lineCanvas', null) lineCanvas: ElementRef;
+    private lineChart: Chart;
 
     public items: Array<{ name: string; id: number }> = [{name: 'parag', id : 1},{name: 'avani', id : 1},{name: 'naman', id : 1}];
 
@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
     }
 
     openDetailsWithQueryParams(item) {
-        let navigationExtras: NavigationExtras = {
+        const navigationExtras: NavigationExtras = {
             queryParams: {
                 item: JSON.stringify(item),
             }
@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
 
     ngOnInit() {
         this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-            type: "line",
+            type: 'line',
             data: {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
                 datasets: [

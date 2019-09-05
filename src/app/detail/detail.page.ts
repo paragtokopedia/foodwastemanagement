@@ -8,9 +8,10 @@ import {Chart} from 'chart.js';
     styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-    @ViewChild('barCanvas') lineCanvas: ElementRef;
+    @ViewChild('barCanvas', null) lineCanvas: ElementRef;
     data: any;
-    name : string;
+    name: string;
+    private lineChart: Chart;
 
 
     constructor(private route: ActivatedRoute, private router: Router) {
